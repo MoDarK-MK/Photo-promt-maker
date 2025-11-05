@@ -1,47 +1,11 @@
 import random
 import json
-import math
+import os
 from datetime import datetime
-from enum import Enum
 
-class WeatherType(Enum):
-    SUNNY = "sunny"
-    CLOUDY = "cloudy"
-    RAINY = "rainy"
-    STORMY = "stormy"
-    FOGGY = "foggy"
-    SNOWY = "snowy"
-    WINDY = "windy"
-    MISTY = "misty"
-
-class TimeOfDay(Enum):
-    DAWN = "dawn"
-    MORNING = "morning"
-    NOON = "noon"
-    AFTERNOON = "afternoon"
-    GOLDEN_HOUR = "golden_hour"
-    BLUE_HOUR = "blue_hour"
-    NIGHT = "night"
-    MIDNIGHT = "midnight"
-
-class MaterialType(Enum):
-    METAL = "metal"
-    WOOD = "wood"
-    STONE = "stone"
-    GLASS = "glass"
-    FABRIC = "fabric"
-    LIQUID = "liquid"
-    SKIN = "skin"
-    HAIR = "hair"
-    EYES = "eyes"
-    FOLIAGE = "foliage"
-
-class AdvancedPromptGenerator:
+class UltimatePromptMaster:
     def __init__(self):
-        self.setup_parametric_system()
-        self.setup_weather_lighting()
-        self.setup_material_system()
-        self.setup_3d_composition()
+        self.setup_comprehensive_data()
         self.setup_categories()
     
     def setup_categories(self):
@@ -60,385 +24,210 @@ class AdvancedPromptGenerator:
             "42": "orderly", "43": "magical", "44": "technological", "45": "organic"
         }
 
-    def setup_parametric_system(self):
-        self.parametric_controls = {
-            "detail_level": {
-                "min": 1, "max": 10, "default": 8,
-                "descriptions": {
-                    1: "minimal details, basic shapes only",
-                    3: "moderate details, recognizable forms",
-                    5: "good details, clear textures",
-                    7: "high details, intricate elements", 
-                    9: "ultra details, microscopic precision",
-                    10: "hyper-realistic, beyond human perception"
-                }
-            },
-            "complexity": {
-                "min": 1, "max": 10, "default": 7,
-                "descriptions": {
-                    1: "extremely simple, single subject",
-                    3: "simple composition, few elements",
-                    5: "moderate complexity, balanced elements",
-                    7: "complex arrangement, multiple focal points",
-                    9: "highly complex, intricate relationships",
-                    10: "overwhelming complexity, maximalist approach"
-                }
-            },
-            "realism": {
-                "min": 1, "max": 10, "default": 8,
-                "descriptions": {
-                    1: "completely abstract, non-representational",
-                    3: "stylized, artistic interpretation",
-                    5: "semi-realistic, believable but artistic",
-                    7: "realistic, convincing representation",
-                    9: "photorealistic, indistinguishable from photo",
-                    10: "hyper-realistic, enhanced reality"
-                }
-            },
-            "saturation": {
-                "min": 1, "max": 10, "default": 6,
-                "descriptions": {
-                    1: "completely desaturated, grayscale",
-                    3: "muted colors, subtle tones",
-                    5: "natural saturation, true to life",
-                    7: "vibrant colors, enhanced reality",
-                    9: "highly saturated, intense colors",
-                    10: "oversaturated, surreal color palette"
-                }
-            },
-            "contrast": {
-                "min": 1, "max": 10, "default": 7,
-                "descriptions": {
-                    1: "extremely low contrast, flat appearance",
-                    3: "low contrast, soft and gentle",
-                    5: "medium contrast, balanced tones",
-                    7: "high contrast, dramatic tones",
-                    9: "very high contrast, bold separation",
-                    10: "extreme contrast, black and white extremes"
-                }
-            },
-            "sharpness": {
-                "min": 1, "max": 10, "default": 8,
-                "descriptions": {
-                    1: "extremely soft, dreamlike blur",
-                    3: "soft focus, gentle edges",
-                    5: "moderate sharpness, natural appearance",
-                    7: "sharp focus, clear details",
-                    9: "very sharp, crisp edges",
-                    10: "ultra sharp, razor-sharp details"
-                }
-            }
+    def setup_comprehensive_data(self):
+        self.scene_elements = {
+            "photography": [
+                "A professional portrait session in a sun-drenched studio with large north-facing windows casting soft, diffused light across the subject's face, highlighting every contour and expression with natural warmth",
+                "Landscape photography at the magical golden hour when the sun kisses the horizon, casting long dramatic shadows and bathing everything in a warm, ethereal glow that enhances textures and colors",
+                "Urban exploration photography in abandoned industrial complexes where decay and nature intertwine, with peeling paint, broken windows, and vegetation reclaiming man-made structures",
+                "Wildlife photography capturing intimate moments in natural habitats, from predator-prey interactions to nurturing behaviors, with perfect timing and composition",
+                "Macro photography revealing the hidden world of tiny subjects where water droplets become crystal balls and insect eyes become complex geometric patterns"
+            ],
+            "dark_moody": [
+                "An abandoned Victorian asylum hallway where peeling wallpaper reveals layers of history, dust motes dance in slivers of light, and shadows hold centuries of untold stories",
+                "A fog-enshrouded ancient forest where gnarled trees twist towards a grey sky, mysterious figures move between trunks, and the air feels heavy with forgotten secrets",
+                "A rain-slicked cobblestone alley in the dead of night where a single flickering gas lamp casts long, dancing shadows and reflections create a distorted reality",
+                "Gothic cathedral crypt with vaulted ceilings, intricate stone carvings worn smooth by time, and candlelight that barely illuminates the profound darkness between pillars",
+                "Industrial ruins at twilight where rusted machinery creates skeletal silhouettes against a bruised sky, and pools of rainwater mirror the decaying beauty"
+            ]
         }
 
-    def setup_weather_lighting(self):
-        self.weather_systems = {
-            WeatherType.SUNNY: {
-                "lighting": "bright direct sunlight with sharp shadows",
-                "atmosphere": "clear visibility with minimal atmospheric interference",
-                "color_temperature": "warm golden tones around 5500K",
-                "effects": ["lens flare", "strong highlights", "deep shadows", "high dynamic range"]
-            },
-            WeatherType.CLOUDY: {
-                "lighting": "soft diffused light with minimal shadows",
-                "atmosphere": "even lighting with gentle contrast",
-                "color_temperature": "cool neutral tones around 6500K", 
-                "effects": ["soft shadows", "reduced contrast", "muted colors", "gentle transitions"]
-            },
-            WeatherType.RAINY: {
-                "lighting": "low contrast flat lighting with reflective surfaces",
-                "atmosphere": "moist air with reduced visibility",
-                "color_temperature": "cool blue tones around 7000K",
-                "effects": ["water reflections", "surface wetness", "atmospheric haze", "saturated colors"]
-            },
-            WeatherType.STORMY: {
-                "lighting": "dramatic directional lighting with lightning bursts",
-                "atmosphere": "heavy atmosphere with dramatic clouds",
-                "color_temperature": "cool dramatic tones around 8000K",
-                "effects": ["lightning flashes", "dark moody tones", "high contrast", "dramatic shadows"]
-            },
-            WeatherType.FOGGY: {
-                "lighting": "extremely diffused almost shadowless light",
-                "atmosphere": "thick fog reducing visibility significantly",
-                "color_temperature": "cool muted tones around 7500K",
-                "effects": ["atmospheric perspective", "soft edges", "muted colors", "mysterious ambiance"]
-            },
-            WeatherType.SNOWY: {
-                "lighting": "bright reflective light from snow coverage",
-                "atmosphere": "crisp clean air with snow particles",
-                "color_temperature": "cool bright tones around 6000K",
-                "effects": ["snow reflections", "bright highlights", "clean whites", "sparkling surfaces"]
-            }
+        self.detailed_descriptors = {
+            "lighting": [
+                "cinematic volumetric lighting with visible light rays cutting through atmospheric haze",
+                "dramatic chiaroscuro lighting creating strong contrasts between deep shadows and brilliant highlights",
+                "soft diffused lighting that wraps around subjects creating gentle transitions and minimal shadows",
+                "hard directional lighting casting sharp, defined shadows that emphasize texture and form",
+                "backlighting that creates glowing edges and silhouettes while revealing translucency",
+                "side lighting that sculpts subjects with dramatic shadows revealing texture and depth",
+                "top lighting that creates downward shadows adding mystery and drama to scenes",
+                "bottom lighting that creates unnatural, dramatic upward shadows for eerie effects",
+                "natural ambient lighting that feels authentic and true to the environment",
+                "studio quality controlled lighting with multiple light sources creating perfect illumination"
+            ],
+            "composition": [
+                "rule of thirds composition with key elements positioned at intersection points for balance",
+                "golden ratio spiral composition that naturally guides the viewer's eye through the image",
+                "symmetrical composition creating perfect balance and harmony with mirror-like precision",
+                "asymmetrical composition using visual weight to create dynamic, engaging balance",
+                "leading lines composition using natural and architectural elements to guide viewing path",
+                "frame within frame composition using architectural elements to create layered depth",
+                "negative space composition where empty areas emphasize the main subject powerfully",
+                "diagonal composition creating dynamic tension and movement across the frame",
+                "centered composition placing the main subject squarely in the middle for impact",
+                "layered composition with foreground, midground, and background elements creating depth"
+            ],
+            "texture": [
+                "highly detailed surface textures showing every scratch, grain, and imperfection realistically",
+                "smooth polished surfaces reflecting light with mirror-like clarity and precision",
+                "rough textured surfaces catching light and creating complex shadow patterns",
+                "transparent materials revealing inner structures and creating refraction effects",
+                "translucent materials scattering light softly and creating glowing effects",
+                "metallic surfaces with polished, brushed, or weathered finishes catching light",
+                "organic textures showing natural patterns, growth rings, and biological structures",
+                "fabric textures from rough burlap to smooth silk with visible weave patterns",
+                "liquid surfaces with ripples, droplets, and surface tension effects",
+                "atmospheric textures like fog, smoke, or haze that affect light transmission"
+            ],
+            "color": [
+                "vibrant saturated color palette with intense, pure hues that command attention",
+                "muted desaturated color palette with soft, subtle tones creating calm atmosphere",
+                "monochromatic color scheme using variations of a single hue for harmony",
+                "complementary color scheme using opposite colors for dynamic contrast",
+                "analogous color scheme using neighboring colors for harmonious transitions",
+                "warm color palette dominated by reds, oranges, and yellows creating energy",
+                "cool color palette dominated by blues, greens, and purples creating calm",
+                "pastel color palette with soft, light tones creating gentle, dreamy moods",
+                "earth tone color palette using natural browns, greens, and tans for organic feel",
+                "neon color palette with electric, glowing colors for futuristic or urban feels"
+            ],
+            "atmosphere": [
+                "heavy atmospheric perspective with depth created through color and value changes",
+                "crisp clear atmosphere where distant objects remain sharp and detailed",
+                "misty foggy atmosphere softening edges and creating mysterious moods",
+                "smoky hazy atmosphere diffusing light and creating dreamlike qualities",
+                "rainy wet atmosphere with reflections and saturated colors after showers",
+                "dusty sandy atmosphere with particulate matter visible in light beams",
+                "steamy humid atmosphere with moisture affecting light and visibility",
+                "stormy turbulent atmosphere with dramatic clouds and changing light conditions",
+                "calm serene atmosphere with still air and perfect visibility",
+                "otherworldly alien atmosphere with unusual lighting and atmospheric effects"
+            ]
         }
 
-        self.time_lighting = {
-            TimeOfDay.DAWN: {
-                "light_angle": "low horizontal light from the east",
-                "color": "soft pink and orange hues with blue shadows",
-                "intensity": "gentle increasing light",
-                "characteristics": ["long shadows", "warm highlights", "cool shadows", "dramatic contrast"]
-            },
-            TimeOfDay.MORNING: {
-                "light_angle": "moderate angle from east-southeast", 
-                "color": "clean bright white light with slight warmth",
-                "intensity": "bright clear light",
-                "characteristics": ["balanced shadows", "natural colors", "good visibility", "fresh appearance"]
-            },
-            TimeOfDay.NOON: {
-                "light_angle": "direct overhead light",
-                "color": "neutral white light minimal color cast",
-                "intensity": "maximum brightness harsh light",
-                "characteristics": ["short shadows", "high contrast", "washed out colors", "technical lighting"]
-            },
-            TimeOfDay.GOLDEN_HOUR: {
-                "light_angle": "low angle from west",
-                "color": "rich golden orange warm tones",
-                "intensity": "soft directional light",
-                "characteristics": ["extremely long shadows", "warm glow", "dramatic lighting", "cinematic quality"]
-            },
-            TimeOfDay.BLUE_HOUR: {
-                "light_angle": "twilight minimal direct light",
-                "color": "cool blue and purple tones",
-                "intensity": "low ambient light",
-                "characteristics": ["minimal shadows", "cool colors", "moody atmosphere", "urban lights visible"]
-            },
-            TimeOfDay.NIGHT: {
-                "light_angle": "artificial light sources only",
-                "color": "mixed color temperatures from artificial lights",
-                "intensity": "very low light high contrast",
-                "characteristics": ["deep shadows", "localized lighting", "high ISO grain", "moody ambiance"]
-            }
+        self.technical_specs = {
+            "camera": [
+                "shot on medium format digital camera with incredible dynamic range and detail",
+                "captured with full frame DSLR using professional L-series lenses",
+                "photographed with mirrorless camera system featuring advanced eye-tracking AF",
+                "taken with vintage film camera producing organic grain and color characteristics",
+                "created with high-resolution digital back on technical camera for architecture",
+                "shot with cinema camera producing cinematic color science and motion",
+                "captured using smartphone computational photography with multi-frame processing",
+                "photographed with specialized equipment for macro or scientific imaging",
+                "taken with waterproof housing for underwater photography applications",
+                "created using drone photography for unique aerial perspectives"
+            ],
+            "lens": [
+                "using ultra-wide angle lens for dramatic perspectives and expansive views",
+                "with standard prime lens reproducing natural human eye perspective",
+                "using telephoto lens for compression effects and distant subject isolation",
+                "with macro lens capable of 1:1 reproduction revealing microscopic details",
+                "using tilt-shift lens for perspective control and miniature effects",
+                "with fast aperture prime lens creating extremely shallow depth of field",
+                "using zoom lens covering multiple focal lengths for composition flexibility",
+                "with specialty lens producing unique optical characteristics and flares",
+                "using anamorphic lens creating cinematic widescreen aspect ratios",
+                "with vintage lens producing characteristic rendering and bokeh qualities"
+            ],
+            "settings": [
+                "shot at wide aperture creating extremely shallow depth of field with creamy bokeh",
+                "using small aperture for maximum depth of field with front-to-back sharpness",
+                "with long exposure creating motion blur and smooth water/cloud effects",
+                "using high-speed sync flash freezing fast action with perfect illumination",
+                "with multiple exposure technique combining several images in-camera",
+                "using HDR technique capturing extended dynamic range from shadows to highlights",
+                "with focus stacking technique combining multiple focus distances for sharpness",
+                "using panoramic stitching creating ultra-wide aspect ratio compositions",
+                "with time-lapse sequence capturing changing light and motion over time",
+                "using infrared conversion capturing invisible light spectrum for surreal effects"
+            ]
         }
 
-    def setup_material_system(self):
-        self.material_library = {
-            MaterialType.METAL: {
-                "properties": ["reflectivity", "conductivity", "malleability", "strength"],
-                "types": {
-                    "polished_steel": {
-                        "reflectivity": 0.85,
-                        "roughness": 0.05,
-                        "color": "silver_gray",
-                        "characteristics": ["mirror-like finish", "sharp reflections", "clean lines", "industrial aesthetic"]
-                    },
-                    "rusted_iron": {
-                        "reflectivity": 0.15,
-                        "roughness": 0.8,
-                        "color": "orange_brown",
-                        "characteristics": ["textured surface", "irregular patterns", "aged appearance", "industrial decay"]
-                    },
-                    "brushed_aluminum": {
-                        "reflectivity": 0.6,
-                        "roughness": 0.3,
-                        "color": "light_gray",
-                        "characteristics": ["directional grain", "soft reflections", "modern appearance", "technical finish"]
-                    },
-                    "copper_patina": {
-                        "reflectivity": 0.4,
-                        "roughness": 0.6,
-                        "color": "green_blue",
-                        "characteristics": ["oxidized surface", "color variation", "aged elegance", "organic patterns"]
-                    }
-                }
-            },
-            MaterialType.WOOD: {
-                "properties": ["grain_pattern", "hardness", "porosity", "flexibility"],
-                "types": {
-                    "oak_wood": {
-                        "grain_pattern": "pronounced_linear",
-                        "hardness": "high",
-                        "color": "light_brown",
-                        "characteristics": ["strong grain", "durable surface", "traditional appearance", "warm tones"]
-                    },
-                    "walnut_wood": {
-                        "grain_pattern": "rich_figured",
-                        "hardness": "medium_high", 
-                        "color": "dark_brown",
-                        "characteristics": ["elegant grain", "deep colors", "luxury appearance", "smooth finish"]
-                    },
-                    "driftwood": {
-                        "grain_pattern": "weathered_irregular",
-                        "hardness": "weathered",
-                        "color": "pale_gray",
-                        "characteristics": ["smooth texture", "soft edges", "organic shapes", "natural aging"]
-                    }
-                }
-            },
-            MaterialType.GLASS: {
-                "properties": ["transparency", "reflectivity", "refraction", "surface_quality"],
-                "types": {
-                    "crystal_glass": {
-                        "transparency": 0.95,
-                        "refraction": 1.5,
-                        "color": "clear",
-                        "characteristics": ["high clarity", "sharp edges", "brilliant reflections", "premium quality"]
-                    },
-                    "frosted_glass": {
-                        "transparency": 0.4,
-                        "refraction": 1.5,
-                        "color": "white_diffused",
-                        "characteristics": ["soft diffusion", "reduced clarity", "gentle lighting", "privacy effect"]
-                    },
-                    "stained_glass": {
-                        "transparency": 0.7,
-                        "refraction": 1.5,
-                        "color": "colored_patterns",
-                        "characteristics": ["vibrant colors", "decorative patterns", "light transmission", "artistic design"]
-                    }
-                }
-            },
-            MaterialType.SKIN: {
-                "properties": ["subsurface_scattering", "pore_detail", "moisture_level", "texture"],
-                "types": {
-                    "youthful_skin": {
-                        "subsurface_scattering": 0.7,
-                        "pore_detail": "fine",
-                        "characteristics": ["smooth texture", "even tone", "natural glow", "healthy appearance"]
-                    },
-                    "aged_skin": {
-                        "subsurface_scattering": 0.5,
-                        "pore_detail": "pronounced",
-                        "characteristics": ["wrinkles", "age_spots", "textured surface", "character lines"]
-                    },
-                    "fantasy_skin": {
-                        "subsurface_scattering": 0.8,
-                        "pore_detail": "unique",
-                        "characteristics": ["unnatural colors", "special patterns", "magical glow", "otherworldly texture"]
-                    }
-                }
-            }
-        }
+        self.artistic_styles = [
+            "hyperrealistic style where every detail is rendered with photographic accuracy",
+            "photorealistic CGI rendering indistinguishable from actual photography",
+            "cinematic style with dramatic lighting and color grading reminiscent of films",
+            "painterly style emulating traditional oil painting techniques and brushwork",
+            "impressionistic style capturing light and mood rather than precise details",
+            "expressionistic style distorting reality to convey emotional experience",
+            "surreal style combining realistic elements in impossible dreamlike arrangements",
+            "abstract style focusing on shapes, colors, and forms rather than representation",
+            "conceptual style where the idea behind the image is as important as the image itself",
+            "minimalist style using extreme simplification to essential elements only",
+            "maximalist style embracing complexity, detail, and visual abundance",
+            "brutalist style emphasizing raw materials and structural honesty",
+            "art deco style with geometric patterns, luxury materials, and streamlined forms",
+            "art nouveau style featuring organic forms, curved lines, and natural motifs",
+            "baroque style with dramatic movement, rich detail, and strong emotional content",
+            "renaissance style emphasizing classical proportion, balance, and humanism",
+            "romantic style focusing on emotion, drama, and the sublime in nature",
+            "gothic style with verticality, intricate detail, and mystical atmosphere",
+            "byzantine style featuring rich color, gold backgrounds, and spiritual themes",
+            "modernist style breaking with tradition through abstraction and innovation"
+        ]
 
-    def setup_3d_composition(self):
-        self.camera_systems = {
-            "perspective": {
-                "focal_lengths": {
-                    "ultra_wide": {"mm": 14, "characteristics": ["dramatic perspective", "distorted edges", "expansive view"]},
-                    "wide_angle": {"mm": 24, "characteristics": ["natural perspective", "good for environments", "slight distortion"]},
-                    "standard": {"mm": 50, "characteristics": ["natural view", "minimal distortion", "versatile"]},
-                    "portrait": {"mm": 85, "characteristics": ["flattering compression", "background separation", "natural proportions"]},
-                    "telephoto": {"mm": 200, "characteristics": ["compressed perspective", "background magnification", "isolation"]}
-                },
-                "aperture_settings": {
-                    "f1.4": {"dof": "very_shallow", "characteristics": ["extreme background blur", "narrow focus plane", "dreamy quality"]},
-                    "f2.8": {"dof": "shallow", "characteristics": ["strong background separation", "artistic blur", "professional look"]},
-                    "f5.6": {"dof": "moderate", "characteristics": ["balanced focus", "recognizable background", "versatile"]},
-                    "f11": {"dof": "deep", "characteristics": ["extended focus", "detailed background", "landscape suitable"]},
-                    "f22": {"dof": "maximum", "characteristics": ["everything in focus", "technical precision", "specialized use"]}
-                }
-            },
-            "lighting_setups": {
-                "three_point": {
-                    "lights": ["key", "fill", "back"],
-                    "characteristics": ["balanced illumination", "dimensional quality", "professional standard"]
-                },
-                "rim_lighting": {
-                    "lights": ["back_light_primary"],
-                    "characteristics": ["dramatic edges", "strong separation", "moody atmosphere"]
-                },
-                "softbox_lighting": {
-                    "lights": ["large_diffused_source"],
-                    "characteristics": ["gentle shadows", "even illumination", "flattering light"]
-                },
-                "chiaroscuro": {
-                    "lights": ["single_directional"],
-                    "characteristics": ["high contrast", "dramatic shadows", "painterly quality"]
-                }
-            },
-            "render_engines": {
-                "unreal_engine_5": {
-                    "features": ["lumen_gi", "nanite_geometry", "virtual_shadow_maps"],
-                    "characteristics": ["real-time global illumination", "infinite geometric detail", "cinematic quality"]
-                },
-                "octane_render": {
-                    "features": ["spectral_rendering", "true_displacement", "advanced_materials"],
-                    "characteristics": ["physically accurate", "fast gpu rendering", "production quality"]
-                },
-                "vray": {
-                    "features": ["adaptive_lighting", "progressive_rendering", "advanced_materials"],
-                    "characteristics": ["photorealistic results", "industry standard", "versatile lighting"]
-                },
-                "arnold": {
-                    "features": ["physical_sky", "standard_surface", "deep_image_output"],
-                    "characteristics": ["movie production quality", "natural lighting", "robust rendering"]
-                }
-            }
-        }
+        self.quality_descriptors = [
+            "ultra detailed 8K resolution with incredible sharpness and clarity",
+            "hyperrealistic rendering indistinguishable from high-end photography",
+            "masterpiece quality worthy of gallery exhibition and critical acclaim",
+            "award-winning composition and execution at professional level",
+            "trending on artstation with exceptional artistic and technical merit",
+            "unreal engine 5 rendering with lumen global illumination and nanite geometry",
+            "octane render with physically accurate lighting and material properties",
+            "v-ray rendering with advanced ray tracing and global illumination",
+            "arnold renderer producing cinematic quality with natural lighting",
+            "cycles rendering with node-based materials and realistic light transport",
+            "eevee real-time rendering with impressive quality and performance",
+            "photorealistic quality that challenges perception of reality",
+            "cinematic quality matching big-budget film production values",
+            "studio quality with perfect lighting and professional execution",
+            "commercial grade suitable for high-end advertising campaigns",
+            "editorial quality meeting standards for premium magazine features",
+            "fine art quality with artistic vision and technical excellence",
+            "gallery quality presentation ready for exhibition in prestigious spaces",
+            "museum quality preservation and presentation standards",
+            "exhibition quality large format printing with incredible detail"
+        ]
 
-    def generate_parametric_description(self, params=None):
-        if params is None:
-            params = {}
-        
-        parametric_desc = []
-        
-        for param_name, config in self.parametric_controls.items():
-            value = params.get(param_name, config["default"])
-            value = max(config["min"], min(config["max"], value))
-            
-            description = config["descriptions"].get(
-                value, 
-                f"{param_name} level {value}"
-            )
-            parametric_desc.append(description)
-        
-        return ", ".join(parametric_desc)
+        self.mood_enhancers = [
+            "creating intense emotional impact that resonates deeply with viewers",
+            "evoking powerful nostalgia and memories through visual storytelling",
+            "generating sense of wonder and amazement at beauty and complexity",
+            "profound spiritual atmosphere that transcends ordinary experience",
+            "dramatic tension that creates anticipation and emotional engagement",
+            "peaceful serenity that calms the mind and soothes the spirit",
+            "chaotic energy that feels alive, dynamic, and unpredictable",
+            "orderly harmony where every element feels perfectly placed and balanced",
+            "mysterious atmosphere inviting curiosity and deeper exploration",
+            "joyful celebration of life, color, and positive energy",
+            "melancholic beauty found in transient moments and fading glory",
+            "epic scale that emphasizes grandeur and monumental significance",
+            "intimate connection that feels personal and emotionally immediate",
+            "alien strangeness that challenges perceptions of normal reality",
+            "familiar comfort that feels like returning to a cherished memory"
+        ]
 
-    def generate_weather_lighting_description(self):
-        weather = random.choice(list(WeatherType))
-        time_of_day = random.choice(list(TimeOfDay))
-        
-        weather_info = self.weather_systems[weather]
-        time_info = self.time_lighting[time_of_day]
-        
-        description = (
-            f"{weather.value} weather conditions with {weather_info['lighting']} "
-            f"during {time_of_day.value} creating {time_info['color']}. "
-            f"Features include {random.choice(weather_info['effects'])} and "
-            f"{random.choice(time_info['characteristics'])}"
-        )
-        
-        return description
-
-    def generate_material_description(self, material_count=3):
-        materials = random.sample(list(MaterialType), min(material_count, len(MaterialType)))
-        material_descriptions = []
-        
-        for material_type in materials:
-            material_data = self.material_library[material_type]
-            material_subtype = random.choice(list(material_data["types"].keys()))
-            subtype_data = material_data["types"][material_subtype]
-            
-            desc = (
-                f"{material_subtype.replace('_', ' ')} {material_type.value} with "
-                f"{random.choice(subtype_data['characteristics'])} and "
-                f"{material_data['properties'][0]} of {subtype_data.get(material_data['properties'][0], 'natural')}"
-            )
-            material_descriptions.append(desc)
-        
-        return "; ".join(material_descriptions)
-
-    def generate_3d_composition_description(self):
-        camera = random.choice(list(self.camera_systems["perspective"]["focal_lengths"].keys()))
-        aperture = random.choice(list(self.camera_systems["perspective"]["aperture_settings"].keys()))
-        lighting = random.choice(list(self.camera_systems["lighting_setups"].keys()))
-        render_engine = random.choice(list(self.camera_systems["render_engines"].keys()))
-        
-        camera_info = self.camera_systems["perspective"]["focal_lengths"][camera]
-        aperture_info = self.camera_systems["perspective"]["aperture_settings"][aperture]
-        lighting_info = self.camera_systems["lighting_setups"][lighting]
-        render_info = self.camera_systems["render_engines"][render_engine]
-        
-        description = (
-            f"3D composition using {camera} perspective ({camera_info['mm']}mm equivalent) "
-            f"with {aperture} aperture creating {aperture_info['dof']} depth of field. "
-            f"{lighting.replace('_', ' ')} lighting setup providing {random.choice(lighting_info['characteristics'])}. "
-            f"Rendered in {render_engine.replace('_', ' ')} with {random.choice(render_info['features'])} "
-            f"for {random.choice(render_info['characteristics'])}"
-        )
-        
-        return description
+        self.detail_enhancers = [
+            "micro-detail rendering where even the smallest elements are fully realized",
+            "texture mapping showing realistic surface properties and material characteristics",
+            "subsurface scattering simulating light penetration through translucent materials",
+            "specular highlights showing precise reflection of light sources",
+            "ambient occlusion creating natural shadowing in corners and crevices",
+            "global illumination with accurate light bouncing and color bleeding",
+            "caustics rendering showing light focusing through reflective/refractive surfaces",
+            "depth of field simulation with accurate bokeh and focus transitions",
+            "motion blur capturing the illusion of movement and passage of time",
+            "volumetric lighting with light beams, god rays, and atmospheric effects",
+            "particle systems showing dust, smoke, sparks, or other small elements",
+            "fluid simulation with realistic water, smoke, or fire behavior",
+            "cloth simulation showing realistic folding, draping, and movement",
+            "hair and fur rendering with individual strands and natural behavior",
+            "weathering effects showing age, wear, and environmental interaction"
+        ]
 
     def get_user_input(self):
-        print("🎨 ADVANCED PARAMETRIC PROMPT GENERATOR")
+        print("🎨 ULTIMATE ADVANCED PROMPT GENERATOR")
         print("=" * 70)
         
         print("\nAVAILABLE CATEGORIES (45 OPTIONS):")
@@ -468,79 +257,76 @@ class AdvancedPromptGenerator:
             except:
                 print("Invalid input. Please enter a number.")
         
-        print("\n🎛️  PARAMETRIC CONTROLS (press enter for defaults):")
-        params = {}
-        for param_name, config in self.parametric_controls.items():
-            while True:
-                try:
-                    value_input = input(f"{param_name.title()} ({config['min']}-{config['max']}, default {config['default']}): ").strip()
-                    if not value_input:
-                        value = config["default"]
-                        break
-                    value = int(value_input)
-                    if config["min"] <= value <= config["max"]:
-                        break
-                    print(f"Please enter a number between {config['min']} and {config['max']}")
-                except:
-                    print("Invalid input. Please enter a number.")
-            params[param_name] = value
-        
-        return category_choice, num_prompts, params
+        return category_choice, num_prompts
 
-    def generate_advanced_prompt(self, category_key, params):
+    def generate_detailed_prompt(self, category_key):
         category = self.categories[category_key]
         
-        components = []
+        prompt_parts = []
         
-        parametric_desc = self.generate_parametric_description(params)
-        components.append(f"Parametric settings: {parametric_desc}")
+        scene_base = random.choice(list(self.scene_elements.values())[0])
+        prompt_parts.append(scene_base)
         
-        weather_lighting = self.generate_weather_lighting_description()
-        components.append(f"Weather and lighting: {weather_lighting}")
+        lighting_desc = random.choice(self.detailed_descriptors["lighting"])
+        prompt_parts.append(lighting_desc)
         
-        materials = self.generate_material_description()
-        components.append(f"Material system: {materials}")
+        composition_desc = random.choice(self.detailed_descriptors["composition"])
+        prompt_parts.append(composition_desc)
         
-        composition_3d = self.generate_3d_composition_description()
-        components.append(f"3D composition: {composition_3d}")
+        for _ in range(3):
+            texture_desc = random.choice(self.detailed_descriptors["texture"])
+            prompt_parts.append(texture_desc)
         
-        base_scene = self.generate_base_scene(category)
-        components.append(f"Scene: {base_scene}")
+        color_desc = random.choice(self.detailed_descriptors["color"])
+        prompt_parts.append(color_desc)
         
-        final_prompt = ". ".join(components) + "."
+        atmosphere_desc = random.choice(self.detailed_descriptors["atmosphere"])
+        prompt_parts.append(atmosphere_desc)
+        
+        artistic_style = random.choice(self.artistic_styles)
+        prompt_parts.append(artistic_style)
+        
+        camera_spec = random.choice(self.technical_specs["camera"])
+        prompt_parts.append(camera_spec)
+        
+        lens_spec = random.choice(self.technical_specs["lens"])
+        prompt_parts.append(lens_spec)
+        
+        settings_spec = random.choice(self.technical_specs["settings"])
+        prompt_parts.append(settings_spec)
+        
+        quality_desc = random.choice(self.quality_descriptors)
+        prompt_parts.append(quality_desc)
+        
+        mood_enhancer = random.choice(self.mood_enhancers)
+        prompt_parts.append(mood_enhancer)
+        
+        for _ in range(4):
+            detail_enhancer = random.choice(self.detail_enhancers)
+            prompt_parts.append(detail_enhancer)
+        
+        random.shuffle(prompt_parts)
+        
+        final_prompt = ". ".join(prompt_parts) + "."
         
         word_count = len(final_prompt.split())
         if word_count < 100:
-            additional_details = self.generate_additional_details()
-            components.append(f"Additional details: {additional_details}")
-            final_prompt = ". ".join(components) + "."
+            additional_details = []
+            while word_count < 100:
+                extra_detail = random.choice(self.detail_enhancers + self.mood_enhancers)
+                if extra_detail not in prompt_parts:
+                    additional_details.append(extra_detail)
+                    word_count = len((". ".join(prompt_parts + additional_details) + ".").split())
+            
+            prompt_parts.extend(additional_details)
+            final_prompt = ". ".join(prompt_parts) + "."
         
         return final_prompt
 
-    def generate_base_scene(self, category):
-        scenes = {
-            "photography": "professional photoshoot in controlled studio environment",
-            "fantasy": "epic fantasy landscape with magical elements and mythical creatures",
-            "sci_fi": "futuristic environment with advanced technology and alien architecture",
-            "portrait": "intimate portrait session capturing personality and emotion",
-            "landscape": "breathtaking natural scenery with dramatic geological formations"
-        }
-        return scenes.get(category, f"creative {category} scene with artistic composition")
-
-    def generate_additional_details(self):
-        details = [
-            "intricate surface details with micro-textures and fine imperfections",
-            "advanced particle systems showing atmospheric effects and dynamic elements",
-            "complex shader networks creating realistic material interactions",
-            "dynamic lighting rigs with multiple light sources and color temperatures",
-            "high-poly geometry with optimized topology for realistic deformation"
-        ]
-        return random.choice(details)
-
-    def generate_multiple_prompts(self, category_key, count, params):
+    def generate_multiple_prompts(self, category_key, count):
         prompts = []
         for i in range(count):
-            prompt_text = self.generate_advanced_prompt(category_key, params)
+            prompt_text = self.generate_detailed_prompt(category_key)
             word_count = len(prompt_text.split())
             char_count = len(prompt_text)
             
@@ -550,34 +336,31 @@ class AdvancedPromptGenerator:
                 "category": self.categories[category_key],
                 "words": word_count,
                 "characters": char_count,
-                "parameters": params,
-                "detail_level": "ultra" if word_count > 200 else "high"
+                "detail_level": "high" if word_count > 150 else "medium"
             })
         return prompts
 
     def display_prompts(self, prompts, category_name):
-        print(f"\n🎨 GENERATED {len(prompts)} ADVANCED {category_name.upper()} PROMPTS:")
-        print("=" * 120)
+        print(f"\n🎨 GENERATED {len(prompts)} {category_name.upper()} PROMPTS:")
+        print("=" * 100)
         
         for prompt_data in prompts:
             print(f"\n#{prompt_data['id']:03d} [{prompt_data['detail_level'].upper()} DETAIL]:")
             print(f"📝 {prompt_data['prompt']}")
             print(f"📊 Words: {prompt_data['words']} | Characters: {prompt_data['characters']}")
-            print("⚙️  Parameters:", prompt_data['parameters'])
-            print("-" * 120)
+            print("-" * 100)
 
     def save_to_file(self, prompts, category_name):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"ADVANCED_PARAMETRIC_{category_name}_prompts_{timestamp}.json"
+        filename = f"ADVANCED_{category_name}_prompts_{timestamp}.json"
         
         data = {
             "metadata": {
                 "category": category_name,
                 "count": len(prompts),
                 "generated_at": datetime.now().isoformat(),
-                "version": "4.0",
-                "detail_level": "parametric_advanced",
-                "systems_used": ["parametric", "weather_lighting", "material", "3d_composition"],
+                "version": "3.0",
+                "detail_level": "advanced",
                 "total_words": sum(p['words'] for p in prompts),
                 "average_words": sum(p['words'] for p in prompts) / len(prompts)
             },
@@ -595,42 +378,41 @@ class AdvancedPromptGenerator:
         avg_words = total_words / len(prompts)
         avg_chars = total_chars / len(prompts)
         
-        ultra_detail = sum(1 for p in prompts if p['detail_level'] == 'ultra')
+        high_detail = sum(1 for p in prompts if p['detail_level'] == 'high')
         
-        print(f"\n📊 ADVANCED PARAMETRIC STATISTICS:")
+        print(f"\n📊 ADVANCED GENERATION STATISTICS:")
         print(f"   Total prompts: {len(prompts)}")
-        print(f"   Ultra detail prompts: {ultra_detail}")
+        print(f"   High detail prompts: {high_detail}")
         print(f"   Average length: {avg_words:.1f} words")
         print(f"   Average characters: {avg_chars:.1f}")
         print(f"   Total words generated: {total_words}")
         print(f"   Total characters: {total_chars}")
         print(f"   Minimum words: {min(p['words'] for p in prompts)}")
         print(f"   Maximum words: {max(p['words'] for p in prompts)}")
-        print(f"   Systems integrated: Parametric, Weather/Lighting, Material, 3D Composition")
 
 def main():
-    generator = AdvancedPromptGenerator()
+    generator = UltimatePromptMaster()
     
     while True:
-        category_choice, num_prompts, params = generator.get_user_input()
+        category_choice, num_prompts = generator.get_user_input()
         category_name = generator.categories[category_choice].replace('_', ' ').title()
         
-        print(f"\n🔄 Generating {num_prompts} advanced parametric {category_name} prompts...")
-        print("This will integrate all advanced systems: Parametric, Weather/Lighting, Material, and 3D Composition...")
+        print(f"\n🔄 Generating {num_prompts} advanced {category_name} prompts...")
+        print("This may take a moment for high-detail prompts...")
         
-        prompts = generator.generate_multiple_prompts(category_choice, num_prompts, params)
+        prompts = generator.generate_multiple_prompts(category_choice, num_prompts)
         
         generator.display_prompts(prompts, category_name)
         generator.show_statistics(prompts)
         
-        save_choice = input("\n💾 Save these advanced parametric prompts to a file? (y/n): ").lower().strip()
+        save_choice = input("\n💾 Save these advanced prompts to a file? (y/n): ").lower().strip()
         if save_choice in ['y', 'yes']:
             filename = generator.save_to_file(prompts, category_name)
-            print(f"✅ Advanced parametric prompts saved to: {filename}")
+            print(f"✅ Advanced prompts saved to: {filename}")
         
-        again = input("\n🔄 Generate more advanced parametric prompts? (y/n): ").lower().strip()
+        again = input("\n🔄 Generate more advanced prompts? (y/n): ").lower().strip()
         if again not in ['y', 'yes']:
-            print("👋 Thank you for using the Advanced Parametric Prompt Generator!")
+            print("👋 Thank you for using the Ultimate Advanced Prompt Generator!")
             break
 
 if __name__ == "__main__":
