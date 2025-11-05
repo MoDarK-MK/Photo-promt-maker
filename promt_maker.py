@@ -99,6 +99,37 @@ class UltimatePromptMaster:
             "maximalist", "conceptual", "fine art", "editorial"
         ]
 
+        # کیفیت تصویر و رزولوشن
+        self.image_quality = {
+            "resolution": {
+                "low": ["low resolution", "basic quality", "standard definition"],
+                "medium": ["medium resolution", "good quality", "HD quality"],
+                "high": ["high resolution", "excellent quality", "full HD"],
+                "ultra": ["ultra high resolution", "4K quality", "UHD"],
+                "extreme": ["8K resolution", "extreme detail", "maximum quality"]
+            },
+            "detail_level": {
+                "basic": ["basic details", "clean image", "clear rendering"],
+                "standard": ["good details", "sharp image", "clean rendering"],
+                "detailed": ["high detail", "very sharp", "crisp details"],
+                "extreme": ["extreme detail", "ultra sharp", "micro details"],
+                "hyper": ["hyper detailed", "maximum sharpness", "perfect clarity"]
+            },
+            "render_quality": {
+                "fast": ["fast render", "quick processing", "efficient rendering"],
+                "balanced": ["balanced render", "good performance", "smooth rendering"],
+                "quality": ["quality render", "fine processing", "clean output"],
+                "premium": ["premium render", "excellent processing", "master rendering"],
+                "ultimate": ["ultimate render", "best quality", "perfect rendering"]
+            },
+            "engine_specific": {
+                "basic": ["clean output", "good rendering", "standard quality"],
+                "advanced": ["octane render", "v-ray quality", "arnold renderer"],
+                "premium": ["unreal engine 5", "cycles render", "luxcore render"],
+                "ultimate": ["masterpiece rendering", "studio quality", "Hollywood VFX quality"]
+            }
+        }
+
         self.detail_levels = {
             "minimal": [1, 2],
             "light": [3, 5],
@@ -108,8 +139,16 @@ class UltimatePromptMaster:
             "extreme": [36, 50]
         }
 
+        self.quality_presets = {
+            "1": {"name": "Low Quality", "resolution": "low", "detail": "basic", "render": "fast", "engine": "basic"},
+            "2": {"name": "Medium Quality", "resolution": "medium", "detail": "standard", "render": "balanced", "engine": "basic"},
+            "3": {"name": "High Quality", "resolution": "high", "detail": "detailed", "render": "quality", "engine": "advanced"},
+            "4": {"name": "Ultra Quality", "resolution": "ultra", "detail": "extreme", "render": "premium", "engine": "premium"},
+            "5": {"name": "Extreme Quality", "resolution": "extreme", "detail": "hyper", "render": "ultimate", "engine": "ultimate"}
+        }
+
     def get_user_input(self):
-        print("🎨 SMART PROMPT GENERATOR")
+        print("🎨 SMART PROMPT GENERATOR WITH QUALITY CONTROL")
         print("=" * 60)
         
         print("\nAVAILABLE CATEGORIES:")
@@ -160,10 +199,57 @@ class UltimatePromptMaster:
                     print("Invalid choice. Please enter a level or number between 1 and 50")
             except:
                 print("Invalid input. Please try again.")
-        
-        return category_choice, num_prompts, min_words, max_words
 
-    def generate_smart_prompt(self, category_key, min_words, max_words):
+        print("\n🎯 IMAGE QUALITY PRESETS:")
+        print("1 - Low Quality (fast rendering)")
+        print("2 - Medium Quality (balanced)")
+        print("3 - High Quality (recommended)")
+        print("4 - Ultra Quality (premium)")
+        print("5 - Extreme Quality (maximum detail)")
+        
+        while True:
+            try:
+                quality_choice = input("Select quality preset (1-5): ").strip()
+                if quality_choice in self.quality_presets:
+                    quality_preset = self.quality_presets[quality_choice]
+                    break
+                else:
+                    print("Please enter a number between 1 and 5")
+            except:
+                print("Invalid input. Please try again.")
+        
+        return category_choice, num_prompts, min_words, max_words, quality_preset
+
+    def generate_quality_terms(self, quality_preset, available_words):
+        """تولید عبارت‌های کیفیت تصویر بر اساس پریست و تعداد کلمات موجود"""
+        quality_terms = []
+        
+        # انتخاب عبارات بر اساس پریست کیفیت
+        resolution = random.choice(self.image_quality["resolution"][quality_preset["resolution"]])
+        detail = random.choice(self.image_quality["detail_level"][quality_preset["detail"]])
+        render = random.choice(self.image_quality["render_quality"][quality_preset["render"]])
+        engine = random.choice(self.image_quality["engine_specific"][quality_preset["engine"]])
+        
+        # ترکیب عبارات بر اساس تعداد کلمات موجود
+        if available_words >= 8:
+            # حالت کامل
+            quality_terms = [resolution, detail, render, engine]
+        elif available_words >= 6:
+            # حالت متوسط
+            quality_terms = [resolution, detail, render]
+        elif available_words >= 4:
+            # حالت کوتاه
+            quality_terms = [resolution, detail]
+        elif available_words >= 2:
+            # حالت بسیار کوتاه
+            quality_terms = [resolution]
+        else:
+            # حداقل کیفیت
+            quality_terms = ["high quality"]
+        
+        return quality_terms
+
+    def generate_smart_prompt(self, category_key, min_words, max_words, quality_preset):
         category = self.categories[category_key]
         
         target_words = random.randint(min_words, max_words)
@@ -171,27 +257,32 @@ class UltimatePromptMaster:
         prompt_parts = []
         current_words = 0
         
+        # محاسبه فضای مورد نیاز برای عبارات کیفیت
+        quality_words_reserve = min(8, max(2, target_words // 4))
+        main_content_words = target_words - quality_words_reserve
+        
+        # تولید محتوای اصلی
         base_category = category if category in self.scene_elements else "photography"
         scene = random.choice(self.scene_elements.get(base_category, self.scene_elements["photography"]))
         prompt_parts.append(scene)
         current_words += len(scene.split())
         
-        if target_words > 3:
+        if main_content_words > 3:
             subject = random.choice(self.core_elements["subjects"])
             prompt_parts.append(subject)
             current_words += len(subject.split())
         
-        if target_words > 6:
+        if main_content_words > 6:
             style = random.choice(self.artistic_descriptors)
             prompt_parts.append(style + " style")
             current_words += 2
         
-        if target_words > 10:
+        if main_content_words > 10:
             lighting = random.choice(self.style_modifiers["lighting"])
             prompt_parts.append(lighting)
             current_words += len(lighting.split())
         
-        if target_words > 15:
+        if main_content_words > 15:
             composition = random.choice(self.style_modifiers["composition"])
             prompt_parts.append(composition)
             current_words += len(composition.split())
@@ -200,23 +291,14 @@ class UltimatePromptMaster:
             prompt_parts.append(mood)
             current_words += len(mood.split())
         
-        if target_words > 20:
-            action = random.choice(self.core_elements["actions"])
-            prompt_parts.append(action)
-            current_words += len(action.split())
+        # اضافه کردن عبارات کیفیت
+        available_quality_words = target_words - current_words
+        if available_quality_words > 0:
+            quality_terms = self.generate_quality_terms(quality_preset, available_quality_words)
+            prompt_parts.extend(quality_terms)
+            current_words += sum(len(term.split()) for term in quality_terms)
         
-        if target_words > 25:
-            quality = random.choice(self.core_elements["qualities"])
-            prompt_parts.append(quality)
-            current_words += len(quality.split())
-        
-        if target_words > 30:
-            camera = random.choice(self.technical_terms["camera"])
-            lens = random.choice(self.technical_terms["lens"])
-            technical = f"shot on {camera} with {lens} lens"
-            prompt_parts.append(technical)
-            current_words += len(technical.split())
-        
+        # تنظیم نهایی تعداد کلمات
         while current_words < target_words and len(prompt_parts) < 15:
             available_space = target_words - current_words
             
@@ -243,6 +325,7 @@ class UltimatePromptMaster:
         final_prompt = ", ".join(prompt_parts)
         actual_words = len(final_prompt.split())
         
+        # بهینه‌سازی نهایی
         if actual_words < min_words:
             while actual_words < min_words:
                 short_boosters = ["high quality", "professional", "masterpiece", "award winning"]
@@ -258,10 +341,12 @@ class UltimatePromptMaster:
         
         return final_prompt, actual_words, target_words
 
-    def generate_multiple_prompts(self, category_key, count, min_words, max_words):
+    def generate_multiple_prompts(self, category_key, count, min_words, max_words, quality_preset):
         prompts = []
         for i in range(count):
-            prompt_text, actual_words, target_words = self.generate_smart_prompt(category_key, min_words, max_words)
+            prompt_text, actual_words, target_words = self.generate_smart_prompt(
+                category_key, min_words, max_words, quality_preset
+            )
             
             prompts.append({
                 "id": i + 1,
@@ -270,31 +355,36 @@ class UltimatePromptMaster:
                 "actual_words": actual_words,
                 "target_words": target_words,
                 "characters": len(prompt_text),
+                "quality_preset": quality_preset["name"],
                 "efficiency": "perfect" if actual_words == target_words else "good" if abs(actual_words - target_words) <= 2 else "adjusted"
             })
         return prompts
 
-    def display_prompts(self, prompts, category_name, min_words, max_words):
-        print(f"\n🎨 GENERATED {len(prompts)} {category_name.upper()} PROMPTS ({min_words}-{max_words} words):")
+    def display_prompts(self, prompts, category_name, min_words, max_words, quality_preset):
+        quality_name = quality_preset["name"]
+        print(f"\n🎨 GENERATED {len(prompts)} {category_name.upper()} PROMPTS")
+        print(f"🎯 QUALITY: {quality_name} | WORDS: {min_words}-{max_words}")
         print("=" * 80)
         
         for prompt_data in prompts:
-            print(f"\n#{prompt_data['id']:03d} [{prompt_data['efficiency'].upper()}]:")
+            print(f"\n#{prompt_data['id']:03d} [{prompt_data['efficiency'].upper()} | {prompt_data['quality_preset']}]:")
             print(f"📝 {prompt_data['prompt']}")
             print(f"📊 Words: {prompt_data['actual_words']} (target: {prompt_data['target_words']}) | Chars: {prompt_data['characters']}")
             print("-" * 80)
 
-    def save_to_file(self, prompts, category_name, min_words, max_words):
+    def save_to_file(self, prompts, category_name, min_words, max_words, quality_preset):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"SMART_{category_name}_{min_words}-{max_words}words_{timestamp}.json"
+        quality_slug = quality_preset["name"].replace(" ", "_").lower()
+        filename = f"QUALITY_{quality_slug}_{category_name}_{min_words}-{max_words}words_{timestamp}.json"
         
         data = {
             "metadata": {
                 "category": category_name,
                 "count": len(prompts),
                 "word_range": f"{min_words}-{max_words}",
+                "quality_preset": quality_preset,
                 "generated_at": datetime.now().isoformat(),
-                "version": "smart_1.0",
+                "version": "quality_1.0",
                 "total_words": sum(p['actual_words'] for p in prompts),
                 "average_words": sum(p['actual_words'] for p in prompts) / len(prompts),
                 "perfect_matches": sum(1 for p in prompts if p['efficiency'] == 'perfect')
@@ -307,7 +397,7 @@ class UltimatePromptMaster:
         
         return filename
 
-    def show_statistics(self, prompts, min_words, max_words):
+    def show_statistics(self, prompts, min_words, max_words, quality_preset):
         total_words = sum(p['actual_words'] for p in prompts)
         total_chars = sum(p['characters'] for p in prompts)
         avg_words = total_words / len(prompts)
@@ -317,8 +407,9 @@ class UltimatePromptMaster:
         good = sum(1 for p in prompts if p['efficiency'] == 'good')
         adjusted = sum(1 for p in prompts if p['efficiency'] == 'adjusted')
         
-        print(f"\n📊 SMART GENERATION STATISTICS:")
+        print(f"\n📊 QUALITY GENERATION STATISTICS:")
         print(f"   Total prompts: {len(prompts)}")
+        print(f"   Quality preset: {quality_preset['name']}")
         print(f"   Target word range: {min_words}-{max_words}")
         print(f"   Perfect word matches: {perfect}")
         print(f"   Good matches (±2 words): {good}")
@@ -328,29 +419,36 @@ class UltimatePromptMaster:
         print(f"   Total words generated: {total_words}")
         print(f"   Min words: {min(p['actual_words'] for p in prompts)}")
         print(f"   Max words: {max(p['actual_words'] for p in prompts)}")
+        
+        # نمایش جزئیات کیفیت
+        print(f"\n🎯 QUALITY SETTINGS APPLIED:")
+        print(f"   Resolution: {quality_preset['resolution']}")
+        print(f"   Detail level: {quality_preset['detail']}")
+        print(f"   Render quality: {quality_preset['render']}")
+        print(f"   Engine: {quality_preset['engine']}")
 
 def main():
     generator = UltimatePromptMaster()
     
     while True:
-        category_choice, num_prompts, min_words, max_words = generator.get_user_input()
+        category_choice, num_prompts, min_words, max_words, quality_preset = generator.get_user_input()
         category_name = generator.categories[category_choice].replace('_', ' ').title()
         
-        print(f"\n🔄 Generating {num_prompts} smart {category_name} prompts ({min_words}-{max_words} words)...")
+        print(f"\n🔄 Generating {num_prompts} {quality_preset['name']} {category_name} prompts ({min_words}-{max_words} words)...")
         
-        prompts = generator.generate_multiple_prompts(category_choice, num_prompts, min_words, max_words)
+        prompts = generator.generate_multiple_prompts(category_choice, num_prompts, min_words, max_words, quality_preset)
         
-        generator.display_prompts(prompts, category_name, min_words, max_words)
-        generator.show_statistics(prompts, min_words, max_words)
+        generator.display_prompts(prompts, category_name, min_words, max_words, quality_preset)
+        generator.show_statistics(prompts, min_words, max_words, quality_preset)
         
-        save_choice = input("\n💾 Save these smart prompts to a file? (y/n): ").lower().strip()
+        save_choice = input("\n💾 Save these quality-controlled prompts to a file? (y/n): ").lower().strip()
         if save_choice in ['y', 'yes']:
-            filename = generator.save_to_file(prompts, category_name, min_words, max_words)
-            print(f"✅ Smart prompts saved to: {filename}")
+            filename = generator.save_to_file(prompts, category_name, min_words, max_words, quality_preset)
+            print(f"✅ Quality prompts saved to: {filename}")
         
-        again = input("\n🔄 Generate more smart prompts? (y/n): ").lower().strip()
+        again = input("\n🔄 Generate more quality prompts? (y/n): ").lower().strip()
         if again not in ['y', 'yes']:
-            print("👋 Thank you for using the Smart Prompt Generator!")
+            print("👋 Thank you for using the Quality-Controlled Prompt Generator!")
             break
 
 if __name__ == "__main__":
