@@ -27,210 +27,92 @@ class UltimatePromptMaster:
     def setup_comprehensive_data(self):
         self.scene_elements = {
             "photography": [
-                "A professional portrait session in a sun-drenched studio with large north-facing windows casting soft, diffused light across the subject's face, highlighting every contour and expression with natural warmth",
-                "Landscape photography at the magical golden hour when the sun kisses the horizon, casting long dramatic shadows and bathing everything in a warm, ethereal glow that enhances textures and colors",
-                "Urban exploration photography in abandoned industrial complexes where decay and nature intertwine, with peeling paint, broken windows, and vegetation reclaiming man-made structures",
-                "Wildlife photography capturing intimate moments in natural habitats, from predator-prey interactions to nurturing behaviors, with perfect timing and composition",
-                "Macro photography revealing the hidden world of tiny subjects where water droplets become crystal balls and insect eyes become complex geometric patterns"
+                "professional portrait session", "landscape photography", 
+                "urban exploration", "wildlife photography", "macro photography",
+                "street photography", "architectural photography", "food photography"
             ],
             "dark_moody": [
-                "An abandoned Victorian asylum hallway where peeling wallpaper reveals layers of history, dust motes dance in slivers of light, and shadows hold centuries of untold stories",
-                "A fog-enshrouded ancient forest where gnarled trees twist towards a grey sky, mysterious figures move between trunks, and the air feels heavy with forgotten secrets",
-                "A rain-slicked cobblestone alley in the dead of night where a single flickering gas lamp casts long, dancing shadows and reflections create a distorted reality",
-                "Gothic cathedral crypt with vaulted ceilings, intricate stone carvings worn smooth by time, and candlelight that barely illuminates the profound darkness between pillars",
-                "Industrial ruins at twilight where rusted machinery creates skeletal silhouettes against a bruised sky, and pools of rainwater mirror the decaying beauty"
+                "abandoned asylum", "foggy forest", "rainy alley", 
+                "gothic cathedral", "industrial ruins", "cemetery at midnight"
+            ],
+            "fantasy": [
+                "dragon flying over castle", "elf archer in forest", 
+                "wizard casting spell", "magical kingdom", "ancient ruins"
+            ],
+            "sci_fi": [
+                "spaceship interior", "alien planet", "future city",
+                "cyborg enhancements", "space station"
             ]
         }
 
-        self.detailed_descriptors = {
+        self.core_elements = {
+            "subjects": [
+                "portrait of elderly person", "child laughing", "professional dancer",
+                "mountain range", "desert dunes", "urban architecture", 
+                "wildlife in habitat", "street market", "water droplets"
+            ],
+            "actions": [
+                "casting dramatic shadows", "creating soft glow", "enhancing textures",
+                "revealing intricate details", "capturing fleeting moments",
+                "emphasizing natural beauty", "creating depth and dimension"
+            ],
+            "qualities": [
+                "with incredible detail", "in perfect composition", "with balanced lighting",
+                "showing realistic textures", "with vibrant colors", "in dramatic atmosphere",
+                "with professional quality", "exhibiting masterful technique"
+            ]
+        }
+
+        self.style_modifiers = {
             "lighting": [
-                "cinematic volumetric lighting with visible light rays cutting through atmospheric haze",
-                "dramatic chiaroscuro lighting creating strong contrasts between deep shadows and brilliant highlights",
-                "soft diffused lighting that wraps around subjects creating gentle transitions and minimal shadows",
-                "hard directional lighting casting sharp, defined shadows that emphasize texture and form",
-                "backlighting that creates glowing edges and silhouettes while revealing translucency",
-                "side lighting that sculpts subjects with dramatic shadows revealing texture and depth",
-                "top lighting that creates downward shadows adding mystery and drama to scenes",
-                "bottom lighting that creates unnatural, dramatic upward shadows for eerie effects",
-                "natural ambient lighting that feels authentic and true to the environment",
-                "studio quality controlled lighting with multiple light sources creating perfect illumination"
+                "cinematic lighting", "dramatic shadows", "soft glow", 
+                "natural light", "studio lighting", "moody lighting"
             ],
             "composition": [
-                "rule of thirds composition with key elements positioned at intersection points for balance",
-                "golden ratio spiral composition that naturally guides the viewer's eye through the image",
-                "symmetrical composition creating perfect balance and harmony with mirror-like precision",
-                "asymmetrical composition using visual weight to create dynamic, engaging balance",
-                "leading lines composition using natural and architectural elements to guide viewing path",
-                "frame within frame composition using architectural elements to create layered depth",
-                "negative space composition where empty areas emphasize the main subject powerfully",
-                "diagonal composition creating dynamic tension and movement across the frame",
-                "centered composition placing the main subject squarely in the middle for impact",
-                "layered composition with foreground, midground, and background elements creating depth"
+                "rule of thirds", "symmetrical balance", "leading lines",
+                "negative space", "layered depth", "dynamic angles"
             ],
-            "texture": [
-                "highly detailed surface textures showing every scratch, grain, and imperfection realistically",
-                "smooth polished surfaces reflecting light with mirror-like clarity and precision",
-                "rough textured surfaces catching light and creating complex shadow patterns",
-                "transparent materials revealing inner structures and creating refraction effects",
-                "translucent materials scattering light softly and creating glowing effects",
-                "metallic surfaces with polished, brushed, or weathered finishes catching light",
-                "organic textures showing natural patterns, growth rings, and biological structures",
-                "fabric textures from rough burlap to smooth silk with visible weave patterns",
-                "liquid surfaces with ripples, droplets, and surface tension effects",
-                "atmospheric textures like fog, smoke, or haze that affect light transmission"
-            ],
-            "color": [
-                "vibrant saturated color palette with intense, pure hues that command attention",
-                "muted desaturated color palette with soft, subtle tones creating calm atmosphere",
-                "monochromatic color scheme using variations of a single hue for harmony",
-                "complementary color scheme using opposite colors for dynamic contrast",
-                "analogous color scheme using neighboring colors for harmonious transitions",
-                "warm color palette dominated by reds, oranges, and yellows creating energy",
-                "cool color palette dominated by blues, greens, and purples creating calm",
-                "pastel color palette with soft, light tones creating gentle, dreamy moods",
-                "earth tone color palette using natural browns, greens, and tans for organic feel",
-                "neon color palette with electric, glowing colors for futuristic or urban feels"
-            ],
-            "atmosphere": [
-                "heavy atmospheric perspective with depth created through color and value changes",
-                "crisp clear atmosphere where distant objects remain sharp and detailed",
-                "misty foggy atmosphere softening edges and creating mysterious moods",
-                "smoky hazy atmosphere diffusing light and creating dreamlike qualities",
-                "rainy wet atmosphere with reflections and saturated colors after showers",
-                "dusty sandy atmosphere with particulate matter visible in light beams",
-                "steamy humid atmosphere with moisture affecting light and visibility",
-                "stormy turbulent atmosphere with dramatic clouds and changing light conditions",
-                "calm serene atmosphere with still air and perfect visibility",
-                "otherworldly alien atmosphere with unusual lighting and atmospheric effects"
+            "mood": [
+                "epic and grand", "intimate and personal", "mysterious and enigmatic",
+                "joyful and vibrant", "peaceful and serene", "dramatic and intense"
             ]
         }
 
-        self.technical_specs = {
+        self.technical_terms = {
             "camera": [
-                "shot on medium format digital camera with incredible dynamic range and detail",
-                "captured with full frame DSLR using professional L-series lenses",
-                "photographed with mirrorless camera system featuring advanced eye-tracking AF",
-                "taken with vintage film camera producing organic grain and color characteristics",
-                "created with high-resolution digital back on technical camera for architecture",
-                "shot with cinema camera producing cinematic color science and motion",
-                "captured using smartphone computational photography with multi-frame processing",
-                "photographed with specialized equipment for macro or scientific imaging",
-                "taken with waterproof housing for underwater photography applications",
-                "created using drone photography for unique aerial perspectives"
+                "medium format", "full frame DSLR", "mirrorless camera",
+                "vintage film", "cinema camera", "drone photography"
             ],
             "lens": [
-                "using ultra-wide angle lens for dramatic perspectives and expansive views",
-                "with standard prime lens reproducing natural human eye perspective",
-                "using telephoto lens for compression effects and distant subject isolation",
-                "with macro lens capable of 1:1 reproduction revealing microscopic details",
-                "using tilt-shift lens for perspective control and miniature effects",
-                "with fast aperture prime lens creating extremely shallow depth of field",
-                "using zoom lens covering multiple focal lengths for composition flexibility",
-                "with specialty lens producing unique optical characteristics and flares",
-                "using anamorphic lens creating cinematic widescreen aspect ratios",
-                "with vintage lens producing characteristic rendering and bokeh qualities"
+                "wide angle", "prime lens", "telephoto", "macro lens",
+                "tilt-shift", "anamorphic"
             ],
             "settings": [
-                "shot at wide aperture creating extremely shallow depth of field with creamy bokeh",
-                "using small aperture for maximum depth of field with front-to-back sharpness",
-                "with long exposure creating motion blur and smooth water/cloud effects",
-                "using high-speed sync flash freezing fast action with perfect illumination",
-                "with multiple exposure technique combining several images in-camera",
-                "using HDR technique capturing extended dynamic range from shadows to highlights",
-                "with focus stacking technique combining multiple focus distances for sharpness",
-                "using panoramic stitching creating ultra-wide aspect ratio compositions",
-                "with time-lapse sequence capturing changing light and motion over time",
-                "using infrared conversion capturing invisible light spectrum for surreal effects"
+                "shallow depth of field", "long exposure", "HDR technique",
+                "focus stacking", "high speed sync", "time-lapse"
             ]
         }
 
-        self.artistic_styles = [
-            "hyperrealistic style where every detail is rendered with photographic accuracy",
-            "photorealistic CGI rendering indistinguishable from actual photography",
-            "cinematic style with dramatic lighting and color grading reminiscent of films",
-            "painterly style emulating traditional oil painting techniques and brushwork",
-            "impressionistic style capturing light and mood rather than precise details",
-            "expressionistic style distorting reality to convey emotional experience",
-            "surreal style combining realistic elements in impossible dreamlike arrangements",
-            "abstract style focusing on shapes, colors, and forms rather than representation",
-            "conceptual style where the idea behind the image is as important as the image itself",
-            "minimalist style using extreme simplification to essential elements only",
-            "maximalist style embracing complexity, detail, and visual abundance",
-            "brutalist style emphasizing raw materials and structural honesty",
-            "art deco style with geometric patterns, luxury materials, and streamlined forms",
-            "art nouveau style featuring organic forms, curved lines, and natural motifs",
-            "baroque style with dramatic movement, rich detail, and strong emotional content",
-            "renaissance style emphasizing classical proportion, balance, and humanism",
-            "romantic style focusing on emotion, drama, and the sublime in nature",
-            "gothic style with verticality, intricate detail, and mystical atmosphere",
-            "byzantine style featuring rich color, gold backgrounds, and spiritual themes",
-            "modernist style breaking with tradition through abstraction and innovation"
+        self.artistic_descriptors = [
+            "hyperrealistic", "photorealistic", "cinematic", "painterly",
+            "impressionistic", "surreal", "abstract", "minimalist",
+            "maximalist", "conceptual", "fine art", "editorial"
         ]
 
-        self.quality_descriptors = [
-            "ultra detailed 8K resolution with incredible sharpness and clarity",
-            "hyperrealistic rendering indistinguishable from high-end photography",
-            "masterpiece quality worthy of gallery exhibition and critical acclaim",
-            "award-winning composition and execution at professional level",
-            "trending on artstation with exceptional artistic and technical merit",
-            "unreal engine 5 rendering with lumen global illumination and nanite geometry",
-            "octane render with physically accurate lighting and material properties",
-            "v-ray rendering with advanced ray tracing and global illumination",
-            "arnold renderer producing cinematic quality with natural lighting",
-            "cycles rendering with node-based materials and realistic light transport",
-            "eevee real-time rendering with impressive quality and performance",
-            "photorealistic quality that challenges perception of reality",
-            "cinematic quality matching big-budget film production values",
-            "studio quality with perfect lighting and professional execution",
-            "commercial grade suitable for high-end advertising campaigns",
-            "editorial quality meeting standards for premium magazine features",
-            "fine art quality with artistic vision and technical excellence",
-            "gallery quality presentation ready for exhibition in prestigious spaces",
-            "museum quality preservation and presentation standards",
-            "exhibition quality large format printing with incredible detail"
-        ]
-
-        self.mood_enhancers = [
-            "creating intense emotional impact that resonates deeply with viewers",
-            "evoking powerful nostalgia and memories through visual storytelling",
-            "generating sense of wonder and amazement at beauty and complexity",
-            "profound spiritual atmosphere that transcends ordinary experience",
-            "dramatic tension that creates anticipation and emotional engagement",
-            "peaceful serenity that calms the mind and soothes the spirit",
-            "chaotic energy that feels alive, dynamic, and unpredictable",
-            "orderly harmony where every element feels perfectly placed and balanced",
-            "mysterious atmosphere inviting curiosity and deeper exploration",
-            "joyful celebration of life, color, and positive energy",
-            "melancholic beauty found in transient moments and fading glory",
-            "epic scale that emphasizes grandeur and monumental significance",
-            "intimate connection that feels personal and emotionally immediate",
-            "alien strangeness that challenges perceptions of normal reality",
-            "familiar comfort that feels like returning to a cherished memory"
-        ]
-
-        self.detail_enhancers = [
-            "micro-detail rendering where even the smallest elements are fully realized",
-            "texture mapping showing realistic surface properties and material characteristics",
-            "subsurface scattering simulating light penetration through translucent materials",
-            "specular highlights showing precise reflection of light sources",
-            "ambient occlusion creating natural shadowing in corners and crevices",
-            "global illumination with accurate light bouncing and color bleeding",
-            "caustics rendering showing light focusing through reflective/refractive surfaces",
-            "depth of field simulation with accurate bokeh and focus transitions",
-            "motion blur capturing the illusion of movement and passage of time",
-            "volumetric lighting with light beams, god rays, and atmospheric effects",
-            "particle systems showing dust, smoke, sparks, or other small elements",
-            "fluid simulation with realistic water, smoke, or fire behavior",
-            "cloth simulation showing realistic folding, draping, and movement",
-            "hair and fur rendering with individual strands and natural behavior",
-            "weathering effects showing age, wear, and environmental interaction"
-        ]
+        self.detail_levels = {
+            "minimal": [1, 2],
+            "light": [3, 5],
+            "moderate": [6, 10],
+            "detailed": [11, 20],
+            "comprehensive": [21, 35],
+            "extreme": [36, 50]
+        }
 
     def get_user_input(self):
-        print("🎨 ULTIMATE ADVANCED PROMPT GENERATOR")
-        print("=" * 70)
+        print("🎨 SMART PROMPT GENERATOR")
+        print("=" * 60)
         
-        print("\nAVAILABLE CATEGORIES (45 OPTIONS):")
+        print("\nAVAILABLE CATEGORIES:")
         categories_display = []
         for key, value in self.categories.items():
             category_name = value.replace('_', ' ').title()
@@ -256,113 +138,166 @@ class UltimatePromptMaster:
                 print("Please enter a number between 1 and 1000")
             except:
                 print("Invalid input. Please enter a number.")
-        
-        return category_choice, num_prompts
 
-    def generate_detailed_prompt(self, category_key):
+        print("\n📝 WORD COUNT OPTIONS:")
+        print("minimal (1-2) | light (3-5) | moderate (6-10) | detailed (11-20) | comprehensive (21-35) | extreme (36-50)")
+        
+        while True:
+            try:
+                word_choice = input("Choose word count level or enter exact number (1-50): ").strip().lower()
+                
+                if word_choice in self.detail_levels:
+                    min_words, max_words = self.detail_levels[word_choice]
+                    break
+                elif word_choice.isdigit():
+                    word_count = int(word_choice)
+                    if 1 <= word_count <= 50:
+                        min_words = max_words = word_count
+                        break
+                    else:
+                        print("Please enter a number between 1 and 50")
+                else:
+                    print("Invalid choice. Please enter a level or number between 1 and 50")
+            except:
+                print("Invalid input. Please try again.")
+        
+        return category_choice, num_prompts, min_words, max_words
+
+    def generate_smart_prompt(self, category_key, min_words, max_words):
         category = self.categories[category_key]
         
+        target_words = random.randint(min_words, max_words)
+        
         prompt_parts = []
+        current_words = 0
         
-        scene_base = random.choice(list(self.scene_elements.values())[0])
-        prompt_parts.append(scene_base)
+        base_category = category if category in self.scene_elements else "photography"
+        scene = random.choice(self.scene_elements.get(base_category, self.scene_elements["photography"]))
+        prompt_parts.append(scene)
+        current_words += len(scene.split())
         
-        lighting_desc = random.choice(self.detailed_descriptors["lighting"])
-        prompt_parts.append(lighting_desc)
+        if target_words > 3:
+            subject = random.choice(self.core_elements["subjects"])
+            prompt_parts.append(subject)
+            current_words += len(subject.split())
         
-        composition_desc = random.choice(self.detailed_descriptors["composition"])
-        prompt_parts.append(composition_desc)
+        if target_words > 6:
+            style = random.choice(self.artistic_descriptors)
+            prompt_parts.append(style + " style")
+            current_words += 2
         
-        for _ in range(3):
-            texture_desc = random.choice(self.detailed_descriptors["texture"])
-            prompt_parts.append(texture_desc)
+        if target_words > 10:
+            lighting = random.choice(self.style_modifiers["lighting"])
+            prompt_parts.append(lighting)
+            current_words += len(lighting.split())
         
-        color_desc = random.choice(self.detailed_descriptors["color"])
-        prompt_parts.append(color_desc)
+        if target_words > 15:
+            composition = random.choice(self.style_modifiers["composition"])
+            prompt_parts.append(composition)
+            current_words += len(composition.split())
+            
+            mood = random.choice(self.style_modifiers["mood"])
+            prompt_parts.append(mood)
+            current_words += len(mood.split())
         
-        atmosphere_desc = random.choice(self.detailed_descriptors["atmosphere"])
-        prompt_parts.append(atmosphere_desc)
+        if target_words > 20:
+            action = random.choice(self.core_elements["actions"])
+            prompt_parts.append(action)
+            current_words += len(action.split())
         
-        artistic_style = random.choice(self.artistic_styles)
-        prompt_parts.append(artistic_style)
+        if target_words > 25:
+            quality = random.choice(self.core_elements["qualities"])
+            prompt_parts.append(quality)
+            current_words += len(quality.split())
         
-        camera_spec = random.choice(self.technical_specs["camera"])
-        prompt_parts.append(camera_spec)
+        if target_words > 30:
+            camera = random.choice(self.technical_terms["camera"])
+            lens = random.choice(self.technical_terms["lens"])
+            technical = f"shot on {camera} with {lens} lens"
+            prompt_parts.append(technical)
+            current_words += len(technical.split())
         
-        lens_spec = random.choice(self.technical_specs["lens"])
-        prompt_parts.append(lens_spec)
-        
-        settings_spec = random.choice(self.technical_specs["settings"])
-        prompt_parts.append(settings_spec)
-        
-        quality_desc = random.choice(self.quality_descriptors)
-        prompt_parts.append(quality_desc)
-        
-        mood_enhancer = random.choice(self.mood_enhancers)
-        prompt_parts.append(mood_enhancer)
-        
-        for _ in range(4):
-            detail_enhancer = random.choice(self.detail_enhancers)
-            prompt_parts.append(detail_enhancer)
+        while current_words < target_words and len(prompt_parts) < 15:
+            available_space = target_words - current_words
+            
+            if available_space >= 3:
+                additional_elements = [
+                    random.choice(self.style_modifiers["lighting"]),
+                    random.choice(self.style_modifiers["composition"]),
+                    random.choice(self.core_elements["qualities"]),
+                    random.choice(self.technical_terms["settings"])
+                ]
+                new_element = random.choice(additional_elements)
+                if new_element not in prompt_parts:
+                    prompt_parts.append(new_element)
+                    current_words += len(new_element.split())
+            else:
+                short_modifiers = ["detailed", "sharp", "vibrant", "dramatic", "soft"]
+                modifier = random.choice(short_modifiers)
+                if modifier not in ' '.join(prompt_parts):
+                    prompt_parts.append(modifier)
+                    current_words += 1
         
         random.shuffle(prompt_parts)
         
-        final_prompt = ". ".join(prompt_parts) + "."
+        final_prompt = ", ".join(prompt_parts)
+        actual_words = len(final_prompt.split())
         
-        word_count = len(final_prompt.split())
-        if word_count < 100:
-            additional_details = []
-            while word_count < 100:
-                extra_detail = random.choice(self.detail_enhancers + self.mood_enhancers)
-                if extra_detail not in prompt_parts:
-                    additional_details.append(extra_detail)
-                    word_count = len((". ".join(prompt_parts + additional_details) + ".").split())
-            
-            prompt_parts.extend(additional_details)
-            final_prompt = ". ".join(prompt_parts) + "."
+        if actual_words < min_words:
+            while actual_words < min_words:
+                short_boosters = ["high quality", "professional", "masterpiece", "award winning"]
+                booster = random.choice(short_boosters)
+                if booster not in final_prompt:
+                    final_prompt += ", " + booster
+                    actual_words += 2
         
-        return final_prompt
+        elif actual_words > max_words:
+            words = final_prompt.split()
+            final_prompt = " ".join(words[:max_words])
+            actual_words = max_words
+        
+        return final_prompt, actual_words, target_words
 
-    def generate_multiple_prompts(self, category_key, count):
+    def generate_multiple_prompts(self, category_key, count, min_words, max_words):
         prompts = []
         for i in range(count):
-            prompt_text = self.generate_detailed_prompt(category_key)
-            word_count = len(prompt_text.split())
-            char_count = len(prompt_text)
+            prompt_text, actual_words, target_words = self.generate_smart_prompt(category_key, min_words, max_words)
             
             prompts.append({
                 "id": i + 1,
                 "prompt": prompt_text,
                 "category": self.categories[category_key],
-                "words": word_count,
-                "characters": char_count,
-                "detail_level": "high" if word_count > 150 else "medium"
+                "actual_words": actual_words,
+                "target_words": target_words,
+                "characters": len(prompt_text),
+                "efficiency": "perfect" if actual_words == target_words else "good" if abs(actual_words - target_words) <= 2 else "adjusted"
             })
         return prompts
 
-    def display_prompts(self, prompts, category_name):
-        print(f"\n🎨 GENERATED {len(prompts)} {category_name.upper()} PROMPTS:")
-        print("=" * 100)
+    def display_prompts(self, prompts, category_name, min_words, max_words):
+        print(f"\n🎨 GENERATED {len(prompts)} {category_name.upper()} PROMPTS ({min_words}-{max_words} words):")
+        print("=" * 80)
         
         for prompt_data in prompts:
-            print(f"\n#{prompt_data['id']:03d} [{prompt_data['detail_level'].upper()} DETAIL]:")
+            print(f"\n#{prompt_data['id']:03d} [{prompt_data['efficiency'].upper()}]:")
             print(f"📝 {prompt_data['prompt']}")
-            print(f"📊 Words: {prompt_data['words']} | Characters: {prompt_data['characters']}")
-            print("-" * 100)
+            print(f"📊 Words: {prompt_data['actual_words']} (target: {prompt_data['target_words']}) | Chars: {prompt_data['characters']}")
+            print("-" * 80)
 
-    def save_to_file(self, prompts, category_name):
+    def save_to_file(self, prompts, category_name, min_words, max_words):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"ADVANCED_{category_name}_prompts_{timestamp}.json"
+        filename = f"SMART_{category_name}_{min_words}-{max_words}words_{timestamp}.json"
         
         data = {
             "metadata": {
                 "category": category_name,
                 "count": len(prompts),
+                "word_range": f"{min_words}-{max_words}",
                 "generated_at": datetime.now().isoformat(),
-                "version": "3.0",
-                "detail_level": "advanced",
-                "total_words": sum(p['words'] for p in prompts),
-                "average_words": sum(p['words'] for p in prompts) / len(prompts)
+                "version": "smart_1.0",
+                "total_words": sum(p['actual_words'] for p in prompts),
+                "average_words": sum(p['actual_words'] for p in prompts) / len(prompts),
+                "perfect_matches": sum(1 for p in prompts if p['efficiency'] == 'perfect')
             },
             "prompts": prompts
         }
@@ -372,47 +307,50 @@ class UltimatePromptMaster:
         
         return filename
 
-    def show_statistics(self, prompts):
-        total_words = sum(p['words'] for p in prompts)
+    def show_statistics(self, prompts, min_words, max_words):
+        total_words = sum(p['actual_words'] for p in prompts)
         total_chars = sum(p['characters'] for p in prompts)
         avg_words = total_words / len(prompts)
         avg_chars = total_chars / len(prompts)
         
-        high_detail = sum(1 for p in prompts if p['detail_level'] == 'high')
+        perfect = sum(1 for p in prompts if p['efficiency'] == 'perfect')
+        good = sum(1 for p in prompts if p['efficiency'] == 'good')
+        adjusted = sum(1 for p in prompts if p['efficiency'] == 'adjusted')
         
-        print(f"\n📊 ADVANCED GENERATION STATISTICS:")
+        print(f"\n📊 SMART GENERATION STATISTICS:")
         print(f"   Total prompts: {len(prompts)}")
-        print(f"   High detail prompts: {high_detail}")
+        print(f"   Target word range: {min_words}-{max_words}")
+        print(f"   Perfect word matches: {perfect}")
+        print(f"   Good matches (±2 words): {good}")
+        print(f"   Adjusted prompts: {adjusted}")
         print(f"   Average length: {avg_words:.1f} words")
         print(f"   Average characters: {avg_chars:.1f}")
         print(f"   Total words generated: {total_words}")
-        print(f"   Total characters: {total_chars}")
-        print(f"   Minimum words: {min(p['words'] for p in prompts)}")
-        print(f"   Maximum words: {max(p['words'] for p in prompts)}")
+        print(f"   Min words: {min(p['actual_words'] for p in prompts)}")
+        print(f"   Max words: {max(p['actual_words'] for p in prompts)}")
 
 def main():
     generator = UltimatePromptMaster()
     
     while True:
-        category_choice, num_prompts = generator.get_user_input()
+        category_choice, num_prompts, min_words, max_words = generator.get_user_input()
         category_name = generator.categories[category_choice].replace('_', ' ').title()
         
-        print(f"\n🔄 Generating {num_prompts} advanced {category_name} prompts...")
-        print("This may take a moment for high-detail prompts...")
+        print(f"\n🔄 Generating {num_prompts} smart {category_name} prompts ({min_words}-{max_words} words)...")
         
-        prompts = generator.generate_multiple_prompts(category_choice, num_prompts)
+        prompts = generator.generate_multiple_prompts(category_choice, num_prompts, min_words, max_words)
         
-        generator.display_prompts(prompts, category_name)
-        generator.show_statistics(prompts)
+        generator.display_prompts(prompts, category_name, min_words, max_words)
+        generator.show_statistics(prompts, min_words, max_words)
         
-        save_choice = input("\n💾 Save these advanced prompts to a file? (y/n): ").lower().strip()
+        save_choice = input("\n💾 Save these smart prompts to a file? (y/n): ").lower().strip()
         if save_choice in ['y', 'yes']:
-            filename = generator.save_to_file(prompts, category_name)
-            print(f"✅ Advanced prompts saved to: {filename}")
+            filename = generator.save_to_file(prompts, category_name, min_words, max_words)
+            print(f"✅ Smart prompts saved to: {filename}")
         
-        again = input("\n🔄 Generate more advanced prompts? (y/n): ").lower().strip()
+        again = input("\n🔄 Generate more smart prompts? (y/n): ").lower().strip()
         if again not in ['y', 'yes']:
-            print("👋 Thank you for using the Ultimate Advanced Prompt Generator!")
+            print("👋 Thank you for using the Smart Prompt Generator!")
             break
 
 if __name__ == "__main__":
